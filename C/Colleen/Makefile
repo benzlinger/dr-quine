@@ -35,7 +35,7 @@ clean:
 
 fclean: clean
 	@printf "%b" $(GREEN) "removing executable...\n" $(NO_COLOR)
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(TMP_NAME)
 	@printf "%b" $(GREEN) "done!\n" $(NO_COLOR)
 
 norm:
