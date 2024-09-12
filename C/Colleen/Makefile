@@ -42,4 +42,4 @@ norm:
 	@$(NORM) $(SRCS)
 	@printf "%b" $(GREEN) "OK!\n" $(NO_COLOR)
 
-.PHONY: all clean fclean re norm
+.PHONY: all clean fclean re norm comp
