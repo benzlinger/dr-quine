@@ -1,4 +1,9 @@
+# object files and executables
 *.o
-C/Colleen/Colleen
-tmp_Colleen
 a.out
+C/Colleen/Colleen
+C/Grace/Grace
+
+# text and output files
+tmp_Colleen
+C/Grace/Grace_kid.c
