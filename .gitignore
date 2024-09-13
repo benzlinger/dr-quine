@@ -3,7 +3,9 @@
 a.out
 C/Colleen/Colleen
 C/Grace/Grace
+C/Sully/Sully
 
 # text and output files
 tmp_Colleen
 C/Grace/Grace_kid.c
+Sully_*
