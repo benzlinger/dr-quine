@@ -1,20 +1,24 @@
 #include <stdio.h>
-#include <string.h>
-#include <unistd.h>
-int main() {
-	int count = 5; char str1[10] = "Sully_"; char str2[2]; char *str3 = ".c";
+#include <stdlib.h>
+#define GET_NAME(buf, name) snprintf(buf, sizeof(buf), name, count);
+#define BUILD_CMD(buf, cmd, arg1, arg2) snprintf(buf, sizeof(buf), cmd, arg1, arg2);
+#define NL 10
+#define TB 9
+#define DQ 34
+
+int main()
+{
+	int count = 5;
+	char fname[10]; char ename[7]; char comp_cmd[50]; char exec_cmd[50];
+	GET_NAME(fname, "Sully_%d.c");
+	GET_NAME(ename, "Sully%d");
+	FILE *c_file = fopen(fname, "w");
+	char *s = "#include <stdio.h>%1$c#include <stdlib.h>%1$c#define GET_NAME(buf, name) snprintf(buf, sizeof(buf), name, count);%1$c#define BUILD_CMD(buf, cmd, arg1, arg2) snprintf(buf, sizeof(buf), cmd, arg1, arg2);%1$c#define NL 10%1$c#define TB 9%1$c#define DQ 34%1$c%1$cint main()%1$c{%1$c%2$cint count = %4$d;%1$c%2$cchar fname[10]; char ename[7]; char comp_cmd[50]; char exec_cmd[50];%1$c%2$cGET_NAME(fname, %3$cSully_%%d.c%3$c);%1$c%2$cGET_NAME(ename, %3$cSully%%d%3$c);%1$c%2$cFILE *c_file = fopen(fname, %3$cw%3$c);%1$c%2$cchar *s = %3$c%5$s%3$c;%1$c%2$cfprintf(c_file, s, NL, TB, DQ, count--, s);%1$c%2$cfclose(c_file);%1$c%2$cBUILD_CMD(comp_cmd, %3$cgcc -Wall -Wextra -Werror %%s -o %%s%3$c, fname, ename);%1$c%2$csystem(comp_cmd);%1$c%2$cBUILD_CMD(exec_cmd, %3$c./%%s%3$c, ename, NULL);%1$c%2$cif (count <= 0) return(0);%1$c%2$csystem(exec_cmd);%1$c}";
+	fprintf(c_file, s, NL, TB, DQ, count--, s);
+	fclose(c_file);
+	BUILD_CMD(comp_cmd, "gcc -Wall -Wextra -Werror %s -o %s", fname, ename);
+	system(comp_cmd);
+	BUILD_CMD(exec_cmd, "./%s", ename, NULL);
 	if (count <= 0) return(0);
-	sprintf(str2, "%d", count);
-	strcat(str1, str2);
-	strcat(str1, str3);
-	FILE *newFile = fopen(str1, "w");
-	char *s = "#include <stdio.h>%c#include <string.h>%c#include <unistd.h>%cint main() {%c%cint count = %d; char str1[10] = %cSully_%c; char str2[2]; char *str3 = %c.c%c;%c%cif (count <= 0) return(0);%c%csprintf(str2, %c%c%c%c, count);%c%cstrcat(str1, str2);%c%cstrcat(str1, str3);%c%cFILE *newFile = fopen(str1, %cw%c);%c%cchar *s = %c%s%c;%c%cfprintf(newFile, s, 10, 10, 10, 10, 9, count - 1, 34, 34, 34, 34, 10, 9, 10, 9, 34, 37, 100, 34, 10, 9, 10, 9, 10, 9, 34, 34, 10, 9, 34, s, 34, 10, 9, 10, 9, 10, 9, 34, 34, 10, 9,   10, 9, 34, 37, 100, 34, 10, 9, 34, 34, 34, 34, 34, 34, 10, 9, 10, 9, 10);%c%cfclose(newFile);%c%cchar *cmd = %c/usr/bin/gcc%c;%c%cchar arg[10];%c%csprintf(arg, %cSully_%c%c.c%c, count -1);%c%cchar *args[] = {%cgcc%c, arg, %c-o%c, %cb.out%c, NULL};%c%cchar *env[] = { NULL };%c%cexecve(cmd, args, env);%c}";
-	fprintf(newFile, s, 10, 10, 10, 10, 9, count - 1, 34, 34, 34, 34, 10, 9, 10, 9, 34, 37, 100, 34, 10, 9, 10, 9, 10, 9, 34, 34, 10, 9, 34, s, 34, 10, 9, 10, 9, 10, 9, 34, 34, 10, 9,   10, 9, 34, 37, 100, 34, 10, 9, 34, 34, 34, 34, 34, 34, 10, 9, 10, 9, 10);
-	fclose(newFile);
-	char *cmd = "/usr/bin/gcc";
-	char arg[10];
-	sprintf(arg, "Sully_%d.c", count -1);
-	char *args[] = {"gcc", arg, "-o", "b.out", NULL};
-	char *env[] = { NULL };
-	execve(cmd, args, env);
+	system(exec_cmd);
 }
