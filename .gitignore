@@ -1,10 +1,14 @@
 # object files and executables
 *.o
 a.out
-C/Colleen/Colleen
-C/Grace/Grace
-C/Sully/Sully
-C/Sully/exec/*
+Colleen/C/Colleen
+Colleen/ASM/Colleen
+Grace/C/Grace
+Grace/ASM/Grace
+Sully/C/Sully
+Sully/C/exec/*
+Sully/ASM/Sully
+Sully/ASM/exec/*
 
 # text and output files
 tmp_Colleen
