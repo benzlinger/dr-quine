@@ -12,8 +12,13 @@ Sully/ASM/exec/*
 
 # text and output files
 tmp_Colleen
-C/Grace/Grace_kid.c
+Grace/C/Grace_kid.c
+Grace/ASM/Grace_kid.s
 Sully_*
 
 # test files
 test/
+test.s
+
+# system files
+.vscode
