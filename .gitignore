@@ -22,3 +22,4 @@ test.s
 
 # system files
 .vscode
+.codegpt
