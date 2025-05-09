@@ -2,13 +2,11 @@
 /*
 	outside comment
 */
-void	print()
-{
-	char*s="#include <stdio.h>%c/*%c%coutside comment%c*/%cvoid%cprint()%c{%c%cchar*s=%c%s%c;%c%cprintf(s,10,10,9,10,10,9,10,10,9,34,s,34,10,9,10,10,9,9,10,10,10,9,10,10,9,10);%c}%cint%c%cmain()%c{%c/*%c%cinside comment%c*/%c%cprint();%c}";
-	printf(s,10,10,9,10,10,9,10,10,9,34,s,34,10,9,10,10,9,9,10,10,10,9,10,10,9,10);
+void print() {
+	char *s = "#include <stdio.h>%2$c/*%2$c%1$coutside comment%2$c*/%2$cvoid print() {%2$c%1$cchar *s = %3$c%4$s%3$c;%2$c%1$cprintf(s, 9, 10, 34, s);%2$c}%2$cint main() {%2$c/*%2$c%1$cinside comment%2$c*/%2$c%1$cprint();%2$c}";
+	printf(s, 9, 10, 34, s);
 }
-int		main()
-{
+int main() {
 /*
 	inside comment
 */

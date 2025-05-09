@@ -13,6 +13,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(EXEFILE)
+# all: $(EXEFILE)
 
 # ASSEMBLE
 $(OBJFILE): $(FILE)
@@ -30,4 +31,4 @@ clean:
 fclean: clean
 	$(RM) $(EXEFILE)
 
-.PHONY: all $(NAME) re clean fclean
+.PHONY: all re clean fclean
