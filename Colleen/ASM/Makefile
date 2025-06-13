@@ -13,11 +13,11 @@ all: $(NAME)
 
 # ASSEMBLE
 $(OBJFILE): $(FILE)
-	$(ASM) $(ASMFLAGS) -o $@ $<
+	$(ASM) $(ASMFLAGS) $< -o $@
 
 # LINK
 $(NAME): $(OBJFILE)
-	$(LD) $(LDFLAGS) -o $@ $<
+	$(LD) $(LDFLAGS) $< -o $@
 
 re: fclean all
 

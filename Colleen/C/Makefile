@@ -1,19 +1,19 @@
 NAME = Colleen
+FILE = Colleen.c
+
+OBJFILE = ${FILE:.c=.o}
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
-SRC = Colleen.c
-OBJ = ${SRC:.c=.o}
-
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+$(NAME): $(FILE)
+	$(CC) $(FLAGS) $< -o $@
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJFILE)
 
 fclean: clean
 	$(RM) $(NAME)
