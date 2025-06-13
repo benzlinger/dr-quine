@@ -2,7 +2,6 @@ NAME = Colleen
 FILE = Colleen.s
 
 OBJFILE = $(FILE:.s=.o)
-EXEFILE = $(FILE:.s=)
 
 ASM = nasm
 ASMFLAGS = -f macho64
@@ -12,16 +11,13 @@ RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(EXEFILE)
-# all: $(EXEFILE)
-
 # ASSEMBLE
 $(OBJFILE): $(FILE)
-	$(ASM) $(ASMFLAGS) -o $(OBJFILE) $(FILE)
+	$(ASM) $(ASMFLAGS) -o $@ $<
 
 # LINK
-$(EXEFILE): $(OBJFILE)
-	$(LD) $(LDFLAGS) -o $(EXEFILE) $(OBJFILE)
+$(NAME): $(OBJFILE)
+	$(LD) $(LDFLAGS) -o $@ $<
 
 re: fclean all
 
@@ -29,6 +25,6 @@ clean:
 	$(RM) $(OBJFILE)
 
 fclean: clean
-	$(RM) $(EXEFILE)
+	$(RM) $(NAME)
 
 .PHONY: all re clean fclean
