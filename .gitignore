@@ -1,19 +1,19 @@
 # object files and executables
 *.o
-a.out
-Colleen/C/Colleen
-Colleen/ASM/Colleen
-Grace/C/Grace
-Grace/ASM/Grace
-Sully/C/Sully
-Sully/C/exec/*
-Sully/ASM/Sully
-Sully/ASM/exec/*
+*.out
+ASM/Colleen/Colleen
+C/Colleen/Colleen
+ASM/Grace/Grace
+C/Grace/Grace
+ASM/Sully/Sully
+C/Sully/Sully
+ASM/Sully/exec
+C/Sully/exec
 
 # text and output files
 tmp_Colleen
-Grace/C/Grace_kid.c
-Grace/ASM/Grace_kid.s
+Grace_kid.c
+Grace_kid.s
 Sully_*
 
 # test files
@@ -23,3 +23,4 @@ test.s
 # system files
 .vscode
 .codegpt
+.DS_Store
